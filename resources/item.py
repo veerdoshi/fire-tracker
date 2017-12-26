@@ -8,12 +8,14 @@ class Item(Resource):
         required=True,
         help='This field cannot be left blank!'
     )
+    
+    
 
 
     def get(self, name):
         item = ItemModel.find_by_measure(name)
         if item:
-            return quakeitem.json()
+            return item.json()
 
     def post(self, name):
         data = Item.parser.parse_args()
