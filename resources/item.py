@@ -10,17 +10,17 @@ class Item(Resource):
     )
 
 
-    def get(self, measure):
-        quakeitem = ItemModel.find_by_measure(measure)
-        if quakeitem:
+    def get(self, name):
+        item = ItemModel.find_by_measure(name)
+        if item:
             return quakeitem.json()
 
     def post(self, name):
         data = Item.parser.parse_args()
-        quakeitem = ItemModel(name, data['magnitude'])
-        quakeitem.save_to_db()
-        return quakeitem.json(), 201
+        item = ItemModel(name, data['magnitude'])
+        item.save_to_db()
+        return item.json(), 201
 
 class ItemList(Resource):
     def get(self):
-         return {'quakes': [quakeitem.json() for quakeitem in ItemModel.query.all()]}
+         return {'items': [quakeitem.json() for quakeitem in ItemModel.query.all()]}
