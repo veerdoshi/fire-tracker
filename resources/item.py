@@ -24,8 +24,8 @@ class Item(Resource):
         item = ItemModel.find_by_measure(name)
         if item:
             item.delete_from_db()
-        return {'message': 'Item deleted'}
+        return {'message': 'Quake deleted'}
 
 class ItemList(Resource):
     def get(self):
-         return {'items': [item.json() for item in ItemModel.query.all()]}
+         return {'quakes': [item.json() for item in ItemModel.query.all()]}
