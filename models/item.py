@@ -10,9 +10,9 @@ class ItemModel(db.Model):
     def __init__(self, name, magnitude):
         self.name = name
         self.magnitude = magnitude
-        self.num = num
+#        self.num = num
     def json(self):
-        return {'name': self.name, 'magnitude': self.magnitude, 'num': self.num}
+        return {'name': self.name, 'magnitude': self.magnitude}
 
     @classmethod
     def find_by_measure(cls, name):
