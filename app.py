@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask_restful import Api
 from resources.item import Item, ItemList
-from intropage import introjson
+from intropage import Intro
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
@@ -11,7 +11,7 @@ app.secret_key = 'veer'
 api = Api(app)
 
 api.add_resource(Item, '/quake/<string:name>')
-api.add_resource(introjson, '/')
+api.add_resource(Intro, '/')
 api.add_resource(ItemList, '/quakes')
 
 if __name__ == '__main__':
