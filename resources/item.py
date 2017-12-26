@@ -8,9 +8,6 @@ class Item(Resource):
         required=True,
         help='This field cannot be left blank!'
     )
-    
-    
-
 
     def get(self, name):
         item = ItemModel.find_by_measure(name)
@@ -23,11 +20,10 @@ class Item(Resource):
         item.save_to_db()
         return item.json(), 201
     
-     def delete(self, name):
+    def delete(self, name):
         item = ItemModel.find_by_measure(name)
         if item:
             item.delete_from_db()
-
         return {'message': 'Item deleted'}
 
 class ItemList(Resource):
