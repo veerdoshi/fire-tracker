@@ -22,6 +22,13 @@ class Item(Resource):
         item = ItemModel(name, data['magnitude'])
         item.save_to_db()
         return item.json(), 201
+    
+     def delete(self, name):
+        item = ItemModel.find_by_measure(name)
+        if item:
+            item.delete_from_db()
+
+        return {'message': 'Item deleted'}
 
 class ItemList(Resource):
     def get(self):
