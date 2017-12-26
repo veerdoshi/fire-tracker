@@ -2,16 +2,17 @@ from db import db
 
 class ItemModel(db.Model):
     __tablename__ = 'items'
-
+    
+    num = db.Column(dbb.Integer, primary_key=True)
     magnitude = db.Column(db.Float(precision=1))
     name = db.Column(db.String(80))
 
     def __init__(self, name, magnitude):
         self.name = name
         self.magnitude = magnitude
-
+        self.num = num
     def json(self):
-        return {'name': self.name, 'magnitude': self.magnitude}
+        return {'name': self.name, 'magnitude': self.magnitude, 'num': self.num}
 
     @classmethod
     def find_by_measure(cls, name):
