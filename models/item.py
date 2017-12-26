@@ -1,7 +1,7 @@
 from db import db
 
 class ItemModel(db.Model):
-    __tablename__ = 'quakeitems'
+    __tablename__ = 'items'
 
     magnitude = db.Column(db.Float(precision=1))
     name = db.Column(db.String(80))
