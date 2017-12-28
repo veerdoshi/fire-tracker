@@ -4,7 +4,7 @@ from models.item import ItemModel
 class Item(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('magnitude',
-        type=int,
+        type=integer,
         required=True,
         help='This field cannot be left blank!'
     )
