@@ -4,7 +4,7 @@ class ItemModel(db.Model):
     __tablename__ = 'items'
     
     num = db.Column(db.Integer, primary_key=True)
-    magnitude = db.Column(db.Integer())
+    magnitude = db.Column(db.Integer)
     name = db.Column(db.String(80))
 
     def __init__(self, name, magnitude):
