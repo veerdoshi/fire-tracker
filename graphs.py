@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.item import ItemModel
-from Matplotlib import Pyplot
+from matplotlib import Pyplot
 
 class Graphing():
    while True:
