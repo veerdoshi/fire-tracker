@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask_restful import Api
 from resources.item import Item, ItemList
-from graphs Import Graphing
+from graphs import Graphing
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
