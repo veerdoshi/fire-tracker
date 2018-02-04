@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask_restful import Api
 from resources.item import Item, ItemList
-
+from graphs Import Graphing
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
@@ -12,6 +12,7 @@ api = Api(app)
 
 api.add_resource(Item, '/quake/<string:name>')
 api.add_resource(ItemList, '/quakes')
+api.add_resource(Graphing, '/graph')
 
 if __name__ == '__main__':
     from db import db
