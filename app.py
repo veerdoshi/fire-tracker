@@ -9,8 +9,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'veer'
 api = Api(app)
 
-api.add_resource(Item, '/quake/<string:name>')
-api.add_resource(ItemList, '/quakes')
+api.add_resource(Item, '/fire/<string:name>')
+api.add_resource(ItemList, '/fires')
 
 if __name__ == '__main__':
     from db import db
