@@ -4,12 +4,12 @@ from models.item import ItemModel
 class Item(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('latitude',
-        type=Float,
+        type=float,
         required=True,
         help='This field cannot be left blank!'
     )
     parser.add_argument('longitude',
-        type=Float,
+        type=float,
         required=True,
         help='This field cannot be left blank!'
     )
