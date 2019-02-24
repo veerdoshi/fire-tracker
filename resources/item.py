@@ -3,8 +3,13 @@ from models.item import ItemModel
 
 class Item(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('magnitude',
-        type=int,
+    parser.add_argument('latitude',
+        type=Float,
+        required=True,
+        help='This field cannot be left blank!'
+    )
+    parser.add_argument('longitude',
+        type=Float,
         required=True,
         help='This field cannot be left blank!'
     )
@@ -16,15 +21,15 @@ class Item(Resource):
 
     def post(self, name):
         data = Item.parser.parse_args()
-        item = ItemModel(name, data['magnitude'])
+        item = ItemModel(name, data['latitude'], data['longitude'])
         item.save_to_db()
         return item.json(), 201
-    
+
     def delete(self, name):
         item = ItemModel.find_by_measure(name)
         if item:
             item.delete_from_db()
-        return {'message': 'Quake deleted'}
+        return {'message': 'Deleted'}
 
 class ItemList(Resource):
     def get(self):
