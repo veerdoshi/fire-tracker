@@ -18,7 +18,7 @@ class ItemModel(db.Model):
 
     @classmethod
     def find_by_measure(cls, name):
-       return cls.query.filter_by(name=name).first()
+       return cls.query.filter_by(name=name).last()
 
     def save_to_db(self):
         db.session.add(self)
