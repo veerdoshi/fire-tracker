@@ -31,6 +31,24 @@ class Item(Resource):
             item.delete_from_db()
         return {'message': 'Deleted'}
 
+    def put(self, name):
+        data = Item.parser.parse_args()
+
+        item = ItemModel.find_by_name(name)
+
+        if item is None:
+            item = ItemModel(name, data['latitude'], data['longitude'])
+        else:
+            item.latitude = data['latitude']
+            item.longitude = data['longitude']
+
+
+        item.save_to_db()
+
+        return item.json()
+
+
+
 class ItemList(Resource):
     def get(self):
          return {'quakes': [item.json() for item in ItemModel.query.all()]}
