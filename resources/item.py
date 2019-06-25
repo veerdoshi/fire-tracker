@@ -3,7 +3,7 @@ from models.item import ItemModel
 
 class Item(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('phonenumber',
+    parser.add_argument('name',
         type=str,
         required=True,
         help='This field cannot be left blank!'
@@ -25,9 +25,10 @@ class Item(Resource):
         if item:
             return item.json()
 
-    def post(self, name):
+    #def post(self, name):
+    def post(self, phonenumber):
         data = Item.parser.parse_args()
-        item = ItemModel(name, data['phonenumber'], data['latitude'], data['longitude'])
+        item = ItemModel(phonenumber, data['name'], data['latitude'], data['longitude'])
         item.save_to_db()
         return item.json(), 201
 
@@ -38,15 +39,15 @@ class Item(Resource):
             item.delete_from_db()
         return {'message': 'Deleted'}
 
-    def put(self, name, phonenumber):
+    def put(self, phonenumber):
         data = Item.parser.parse_args()
 
         item = ItemModel.find_by_measure(phonenumber)
 
         if item is None:
-            item = ItemModel(name, data['phonenumber'], data['latitude'], data['longitude'])
+            item = ItemModel(phonenumber, data['name'], data['latitude'], data['longitude'])
         else:
-            item.phonenumber = data['phonenumber']
+            item.name = data['name']
             item.latitude = data['latitude']
             item.longitude = data['longitude']
 

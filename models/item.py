@@ -9,14 +9,14 @@ class ItemModel(db.Model):
     phonenumber = db.Column(db.String(80))
     name = db.Column(db.String(80))
 
-    def __init__(self, name, phonenumber, latitude, longitude):
-        self.name = name
+    def __init__(self, phonenumber, name, latitude, longitude):
         self.phonenumber = phonenumber
+        self.name = name
         self.latitude = latitude
         self.longitude = longitude
 #        self.num = num
     def json(self):
-        return {'name': self.name, 'phonenumber': self.phonenumber, 'latitude': self.latitude, 'longitude': self.longitude}
+        return {'phonenumber': self.phonenumber, 'name': self.name, 'latitude': self.latitude, 'longitude': self.longitude}
 
     @classmethod
     #def find_by_measure(cls, name):
