@@ -19,9 +19,10 @@ class ItemModel(db.Model):
         return {'name': self.name, 'phonenumber': self.phonenumber, 'latitude': self.latitude, 'longitude': self.longitude}
 
     @classmethod
-    def find_by_measure(cls, name):
-       return cls.query.filter_by(name=name).first()
-
+    #def find_by_measure(cls, name):
+    def find_by_measure(cls, phonenumber)
+       #return cls.query.filter_by(name=name).first()
+       return cls.query.filter_by(phonenumber=phonenumber).first()
 
     def save_to_db(self):
         db.session.add(self)

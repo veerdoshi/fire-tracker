@@ -19,8 +19,9 @@ class Item(Resource):
         help='This field cannot be left blank!'
     )
 
-    def get(self, name):
-        item = ItemModel.find_by_measure(name)
+    #def get(self, name):
+    def get(self, phonenumber):
+        item = ItemModel.find_by_measure(phonenumber)
         if item:
             return item.json()
 
@@ -30,16 +31,17 @@ class Item(Resource):
         item.save_to_db()
         return item.json(), 201
 
-    def delete(self, name):
-        item = ItemModel.find_by_measure(name)
+    #def delete(self, name):
+    def delete(self, phonenumber):
+        item = ItemModel.find_by_measure(phonenumber)
         if item:
             item.delete_from_db()
         return {'message': 'Deleted'}
 
-    def put(self, name):
+    def put(self, name, phonenumber):
         data = Item.parser.parse_args()
 
-        item = ItemModel.find_by_measure(name)
+        item = ItemModel.find_by_measure(phonenumber)
 
         if item is None:
             item = ItemModel(name, data['phonenumber'], data['latitude'], data['longitude'])
