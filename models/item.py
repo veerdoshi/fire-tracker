@@ -20,7 +20,7 @@ class ItemModel(db.Model):
 
     @classmethod
     #def find_by_measure(cls, name):
-    def find_by_measure(cls, phonenumber)
+    def find_by_measure(cls, phonenumber):
        #return cls.query.filter_by(name=name).first()
        return cls.query.filter_by(phonenumber=phonenumber).first()
 
