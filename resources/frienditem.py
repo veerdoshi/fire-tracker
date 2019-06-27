@@ -54,4 +54,5 @@ class FriendItem(Resource):
 
 class FriendItemList(Resource):
     def get(self):
-         return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.all()]}
+         #return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.all()]}
+         return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits="4081111111").all()]}
