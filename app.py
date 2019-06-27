@@ -11,6 +11,8 @@ api = Api(app)
 
 api.add_resource(Item, '/fire/<string:phonenumber>')
 api.add_resource(ItemList, '/fires')
+api.add_resource(FriendItem, '/friend/<string:phonedigits>')
+api.add_resource(FriendItemList, '/friends')
 
 if __name__ == '__main__':
     from db import db
