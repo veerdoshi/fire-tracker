@@ -7,7 +7,7 @@ class FriendItemModel(db.Model):
     phonedigits = db.Column(db.String(80))
     friendname = db.Column(db.String(80))
 
-    def __init__(self, phonenumber):
+    def __init__(self, phonedigits):
         self.phonedigits = phonedigits
         self.friendname = friendname
 #        self.num = num
