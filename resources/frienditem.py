@@ -8,7 +8,11 @@ class FriendItem(Resource):
         required=True,
         help='This field cannot be left blank!'
     )
-
+    parser.add_argument('friendphone',
+        type=str,
+        required=True,
+        help='This field cannot be left blank!'
+    )
     #def get(self, name):
     def get(self, phonedigits):
         frienditem = FriendItemModel.find_by_measure(phonedigits)
@@ -18,7 +22,7 @@ class FriendItem(Resource):
     #def post(self, name):
     def post(self, phonedigits):
         frienddata = FriendItem.parser.parse_args()
-        frienditem = FriendItemModel(phonedigits, frienddata['friendname'])
+        frienditem = FriendItemModel(phonedigits, frienddata['friendname'], frienddata['friendphone'])
         frienditem.save_to_db()
         return frienditem.json(), 201
 
@@ -35,9 +39,10 @@ class FriendItem(Resource):
         frienditem = FriendItemModel.find_by_measure(phonedigits)
 
         if frienditem is None:
-            frienditem = FriendItemModel(phonedigits, frienddata['friendname'])
+            frienditem = FriendItemModel(phonedigits, frienddata['friendname'], frienddata['friendphone'])
         else:
             frienditem.friendname = frienddata['friendname']
+            frienditem.friendphone = frienddata['friendphone']
 
 
         frienditem.save_to_db()
