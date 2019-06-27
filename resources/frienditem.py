@@ -18,7 +18,7 @@ class FriendItem(Resource):
     #def post(self, name):
     def post(self, phonedigits):
         frienddata = FriendItem.parser.parse_args()
-        frienditem = FriendItemModel(phonedigits, data['friendname'])
+        frienditem = FriendItemModel(phonedigits, frienddata['friendname'])
         frienditem.save_to_db()
         return frienditem.json(), 201
 
@@ -35,9 +35,9 @@ class FriendItem(Resource):
         frienditem = FriendItemModel.find_by_measure(phonedigits)
 
         if frienditem is None:
-            frienditem = FriendItemModel(phonedigits, data['friendname'])
+            frienditem = FriendItemModel(phonedigits, frienddata['friendname'])
         else:
-            frienditem.friendname = data['friendname']
+            frienditem.friendname = frienddata['friendname']
 
 
         frienditem.save_to_db()
