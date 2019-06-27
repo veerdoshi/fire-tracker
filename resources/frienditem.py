@@ -15,7 +15,8 @@ class FriendItem(Resource):
     )
     #def get(self, name):
     def get(self, phonedigits):
-        frienditem = FriendItemModel.find_by_measure(phonedigits)
+        #frienditem = FriendItemModel.find_by_measure(phonedigits)
+        frienditem = FriendItemModel.find_all_measures(phonedigits)
         if frienditem:
             return frienditem.json()
 

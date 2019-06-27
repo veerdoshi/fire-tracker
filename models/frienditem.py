@@ -22,6 +22,11 @@ class FriendItemModel(db.Model):
        #return cls.query.filter_by(name=name).first()
        return cls.query.filter_by(phonedigits=phonedigits).first()
 
+   def find_all_measures (cls, phonedigits):
+      #return cls.query.filter_by(name=name).first()
+      return cls.query.filter_by(phonedigits=phonedigits)
+
+
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
