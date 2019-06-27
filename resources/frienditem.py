@@ -13,12 +13,14 @@ class FriendItem(Resource):
         required=True,
         help='This field cannot be left blank!'
     )
-    #def get(self, name):
+
     def get(self, phonedigits):
         #frienditem = FriendItemModel.find_by_measure(phonedigits)
-        frienditem = FriendItemModel.find_by_measure(phonedigits)
-        if frienditem:
-            return frienditem.json()
+        return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=phonedigits).all()]}
+
+#        frienditem = FriendItemModel.find_by_measure(phonedigits)
+#        if frienditem:
+#            return frienditem.json()
 
     #def post(self, name):
     def post(self, phonedigits):
@@ -54,5 +56,4 @@ class FriendItem(Resource):
 
 class FriendItemList(Resource):
     def get(self):
-         #return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.all()]}
-         return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits="4081111111").all()]}
+         return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.all()]}
