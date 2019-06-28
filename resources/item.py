@@ -29,7 +29,7 @@ class Item(Resource):
         if '+' not in phonenumber:
             item = ItemModel.find_by_measure(phonenumber)
             if item:
-                friendsObj['friends'].append(item)
+                friendsObj['friends'].append(item.json())
         else:
             x = phonenumber.split("+")
             for y in range(0,len(x)):
