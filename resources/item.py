@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.item import ItemModel
+import simplejson as json
 
 class Item(Resource):
     parser = reqparse.RequestParser()
@@ -21,9 +22,23 @@ class Item(Resource):
 
     #def get(self, name):
     def get(self, phonenumber):
-        item = ItemModel.find_by_measure(phonenumber)
-        if item:
-            return item.json()
+
+        friendsinformationstring = '{"friends":[]}'
+        friendsObj = json.loads(friendsinformationstring)
+
+        if '+' not in phonenumber:
+            item = ItemModel.find_by_measure(phonenumber)
+            if item:
+                friendsObj['friends'].append(item)
+        else:
+            x = phonenumber.split("+")
+            for y in range(0,len(x)):
+                friendsObj['friends'].append([item.json() for item in ItemModel.query.filter_by(phonenumber=x[y]).all()])
+        return friendsObj
+
+        #item = ItemModel.find_by_measure(phonenumber)
+        #if item:
+        #    return item.json()
 
     #def post(self, name):
     def post(self, phonenumber):
