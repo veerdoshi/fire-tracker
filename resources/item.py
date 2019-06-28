@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse
 from models.item import ItemModel
-import simplejson as json
-
+#import simplejson as json
+import json
 class Item(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('name',
