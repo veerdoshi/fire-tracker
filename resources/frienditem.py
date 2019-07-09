@@ -21,8 +21,8 @@ class FriendItem(Resource):
         else:
             x = phonedigits.split("-")
             friendJSON = [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=x[0]).all()]
-            return {'friends': friendJSON}
-
+            #return {'friends': friendJSON}
+            return {'friends': [friendJSON.json() for frienditem in FriendItemModel.query.filter_by(friendphone=x[1]).all()]}
 
         #frienditem = FriendItemModel.find_by_measure(phonedigits)
 
