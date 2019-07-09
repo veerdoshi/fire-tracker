@@ -20,9 +20,9 @@ class FriendItem(Resource):
             return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=phonedigits).all()]}
         else:
             x = phonedigits.split("-")
-            friendJSON = [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=x[0]).all()]
-            #return {'friends': friendJSON}
-            return {'friends': [friendJSON for friendJSON in FriendItemModel.query.filter_by(friendphone=x[1]).all()]}
+            friendJSON = [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=x[0],friendphone=x[1]).all()]
+            return {'friends': friendJSON}
+            #return {'friends': [friendJSON for friendJSON in FriendItemModel.query.filter_by(friendphone=x[1]).all()]}
 
         #frienditem = FriendItemModel.find_by_measure(phonedigits)
 
