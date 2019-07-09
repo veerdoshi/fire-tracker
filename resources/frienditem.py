@@ -15,8 +15,18 @@ class FriendItem(Resource):
     )
 
     def get(self, phonedigits):
+
+        if '%' not in phonedigits:
+            return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=phonedigits).all()]}
+        else:
+            x = phonedigits.split("%")
+            friendJSON = [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=x[0]).all()]
+            return {'friends': friendJSON}
+
+
         #frienditem = FriendItemModel.find_by_measure(phonedigits)
-        return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=phonedigits).all()]}
+
+        #return {'friends': [frienditem.json() for frienditem in FriendItemModel.query.filter_by(phonedigits=phonedigits).all()]}
 
 #        frienditem = FriendItemModel.find_by_measure(phonedigits)
 #        if frienditem:
