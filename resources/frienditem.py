@@ -61,9 +61,9 @@ class FriendItem(Resource):
             #y = phonedigits.split("-")
             frienditem = FriendItemModel(y[0], frienddata['friendname'], frienddata['friendphone'])
         else:
-            frienditem.friendname = frienddata['friendname']
-            frienditem.friendphone = frienddata['friendphone']
-
+            #frienditem.friendname = frienddata['friendname']
+            #frienditem.friendphone = frienddata['friendphone']
+            print("HI")
 
         frienditem.save_to_db()
 
