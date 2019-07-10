@@ -13,6 +13,11 @@ class FriendItem(Resource):
         required=True,
         help='This field cannot be left blank!'
     )
+    parser.add_argument('status',
+        type=str,
+        required=True,
+        help='This field cannot be left blank!'
+    )
 
     def get(self, phonedigits):
 
@@ -35,7 +40,7 @@ class FriendItem(Resource):
     #def post(self, name):
     def post(self, phonedigits):
         frienddata = FriendItem.parser.parse_args()
-        frienditem = FriendItemModel(phonedigits, frienddata['friendname'], frienddata['friendphone'])
+        frienditem = FriendItemModel(phonedigits, frienddata['friendname'], frienddata['friendphone'], frienddata['status'])
         frienditem.save_to_db()
         return frienditem.json(), 201
 
@@ -59,10 +64,12 @@ class FriendItem(Resource):
 
         if frienditem is None:
             y = phonedigits.split("-")
-            frienditem = FriendItemModel(y[0], frienddata['friendname'], frienddata['friendphone'])
+            frienditem = FriendItemModel(y[0], frienddata['friendname'], frienddata['friendphone'], frienddata['status'])
         else:
             frienditem.friendname = frienddata['friendname']
             frienditem.friendphone = frienddata['friendphone']
+            frienditem.status = frienddata['status']
+
 
 
         frienditem.save_to_db()

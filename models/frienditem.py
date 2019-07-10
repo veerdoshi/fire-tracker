@@ -7,14 +7,16 @@ class FriendItemModel(db.Model):
     phonedigits = db.Column(db.String(80))
     friendname = db.Column(db.String(80))
     friendphone = db.Column(db.String(80))
+    status = db.Column(db.String(80))
 
-    def __init__(self, phonedigits, friendname, friendphone):
+    def __init__(self, phonedigits, friendname, friendphone, status):
         self.phonedigits = phonedigits
         self.friendname = friendname
         self.friendphone = friendphone
+        self.status = status
 #        self.num = num
     def json(self):
-        return {'phonedigits': self.phonedigits, 'friendname': self.friendname, 'friendphone': self.friendphone}
+        return {'phonedigits': self.phonedigits, 'friendname': self.friendname, 'friendphone': self.friendphone, 'status': self.status}
 
     @classmethod
     #def find_by_measure(cls, name):
