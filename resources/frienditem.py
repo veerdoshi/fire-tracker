@@ -57,8 +57,8 @@ class FriendItem(Resource):
         frienditem = FriendItemModel.find_by_measure(phonedigits)
 
         if frienditem is None:
-            y = phonedigits.split("-")
-            frienditem = FriendItemModel(y[0], frienddata['friendname'], frienddata['friendphone'])
+            #y = phonedigits.split("-")
+            frienditem = FriendItemModel(phonedigits, frienddata['friendname'], frienddata['friendphone'])
         else:
             frienditem.friendname = frienddata['friendname']
             frienditem.friendphone = frienddata['friendphone']
