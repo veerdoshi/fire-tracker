@@ -41,11 +41,12 @@ class FriendItem(Resource):
 
     #def delete(self, name):
     def delete(self, phonedigits):
-        frienditem = FriendItemModel.find_by_measure(phonedigits)
+        frienditem = FriendItemModel.find_by_measures(phonedigits)
         if frienditem:
             frienditem.delete_from_db()
-        return {'message': 'Deleted'}
-
+            return {'message': 'Deleted'}
+        else:
+            return {'message': 'Item not found'}
     def put(self, phonedigits):
         frienddata = FriendItem.parser.parse_args()
 
@@ -55,7 +56,8 @@ class FriendItem(Resource):
         frienditem = FriendItemModel.find_by_measure(phonedigits)
 
         if frienditem is None:
-            frienditem = FriendItemModel(phonedigits, frienddata['friendname'], frienddata['friendphone'])
+            y = phonedigits.split("-")
+            frienditem = FriendItemModel(y[0], frienddata['friendname'], frienddata['friendphone'])
         else:
             frienditem.friendname = frienddata['friendname']
             frienditem.friendphone = frienddata['friendphone']
