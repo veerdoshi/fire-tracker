@@ -5,12 +5,12 @@ class FriendItem(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('friendname',
         type=str,
-        required=True,
+        required=False,
         help='This field cannot be left blank!'
     )
     parser.add_argument('friendphone',
         type=str,
-        required=True,
+        required=False,
         help='This field cannot be left blank!'
     )
     parser.add_argument('status',
