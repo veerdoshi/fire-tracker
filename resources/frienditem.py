@@ -5,7 +5,7 @@ class FriendItem(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('friendname',
         type=str,
-        required=False,
+        required=True,
         help='This field cannot be left blank!'
     )
     parser.add_argument('friendphone',
