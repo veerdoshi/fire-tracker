@@ -24,7 +24,7 @@ class FriendItemModel(db.Model):
        y = phonedigits.split("-")
 
        #return cls.query.filter_by(phonedigits=y[0], friendphone=y[1]).all()
-       firstquery = cls.query.filter_by(friendphone=y[1]).first()
+       firstquery = cls.query.filter_by(phonedigits=y[0],friendphone=y[1]).first()
        #return cls.query.filter_by(phonedigits=phonedigits).first()
        return firstquery
        #return cls.query.filter_by(phonedigits=phonedigits).first()
