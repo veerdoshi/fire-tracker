@@ -52,7 +52,7 @@ class FriendItem(Resource):
         y = phonedigits.split("-")
         #frienditem = FriendItemModel.query.filter_by(phonedigits=y[0],friendphone=y[1]).all()
 
-        frienditem = FriendItemModel.find_by_measures(y[0],y[1])
+        frienditem = FriendItemModel.find_by_measures(phonedigits)
 
         if frienditem is None:
             frienditem = FriendItemModel(phonedigits, frienddata['friendname'], frienddata['friendphone'])
