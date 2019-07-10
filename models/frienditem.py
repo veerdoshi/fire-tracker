@@ -21,12 +21,12 @@ class FriendItemModel(db.Model):
     def find_by_measure(cls, phonedigits):
        #return cls.query.filter_by(name=name).first()
 
-       #y = phonedigits.split("-")
+       y = phonedigits.split("-")
 
        #return cls.query.filter_by(phonedigits=y[0], friendphone=y[1]).all()
-
-       return cls.query.filter_by(phonedigits=phonedigits).first()
-
+       firstquery = cls.query.filter_by(phonedigits=y[0]).first()
+       #return cls.query.filter_by(phonedigits=phonedigits).first()
+       return firstquery
        #return cls.query.filter_by(phonedigits=phonedigits).first()
 
     # def find_by_measures(cls, phonedigits):

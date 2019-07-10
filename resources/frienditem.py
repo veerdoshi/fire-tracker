@@ -51,19 +51,19 @@ class FriendItem(Resource):
     def put(self, phonedigits):
         frienddata = FriendItem.parser.parse_args()
 
-        y = phonedigits.split("-")
+        #y = phonedigits.split("-")
         #frienditem = FriendItemModel.query.filter_by(phonedigits=y[0],friendphone=y[1]).all()
 
-        frienditem = FriendItemModel.query.filter_by(phonedigits=y[0], friendphone=y[1]).all()
-        #frienditem = FriendItemModel.find_by_measure(phonedigits)
+        #frienditem = FriendItemModel.query.filter_by(phonedigits=y[0], friendphone=y[1]).all()
+        frienditem = FriendItemModel.find_by_measure(phonedigits)
 
         if frienditem is None:
-            #y = phonedigits.split("-")
+            y = phonedigits.split("-")
             frienditem = FriendItemModel(y[0], frienddata['friendname'], frienddata['friendphone'])
         else:
-            #frienditem.friendname = frienddata['friendname']
-            #frienditem.friendphone = frienddata['friendphone']
-            print("HI")
+            frienditem.friendname = frienddata['friendname']
+            frienditem.friendphone = frienddata['friendphone']
+
 
         frienditem.save_to_db()
 
