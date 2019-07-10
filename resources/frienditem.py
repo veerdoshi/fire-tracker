@@ -42,7 +42,7 @@ class FriendItem(Resource):
     #def delete(self, name):
     def delete(self, phonedigits):
         frienddata = FriendItem.parser.parse_args()
-        frienditem = FriendItemModel.find_by_measures(phonedigits)
+        frienditem = FriendItemModel.find_by_measure(phonedigits)
         if frienditem:
             frienditem.delete_from_db()
             return {'message': 'Deleted'}
