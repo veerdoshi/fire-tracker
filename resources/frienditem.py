@@ -5,12 +5,12 @@ class FriendItem(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('friendname',
         type=str,
-        required=True,
+        required=False,
         help='This field cannot be left blank!'
     )
     parser.add_argument('friendphone',
         type=str,
-        required=True,
+        required=False,
         help='This field cannot be left blank!'
     )
 
@@ -49,13 +49,16 @@ class FriendItem(Resource):
     def put(self, phonedigits):
         frienddata = FriendItem.parser.parse_args()
 
-        frienditem = FriendItemModel.find_by_measure(phonedigits)
+        y = phonedigits.split("-")
+        frienditem = FriendItemModel.query.filter_by(phonedigits=y[0],friendphone=y[1]).all()
+
+        #frienditem = FriendItemModel.find_by_measure(phonedigits)
 
         if frienditem is None:
             frienditem = FriendItemModel(phonedigits, frienddata['friendname'], frienddata['friendphone'])
         else:
             frienditem.friendname = frienddata['friendname']
-            frienditem.friendphone = frienddata['friendphone']
+            #frienditem.friendphone = frienddata['friendphone']
 
 
         frienditem.save_to_db()
