@@ -22,9 +22,11 @@ class FriendItemModel(db.Model):
        #return cls.query.filter_by(name=name).first()
        return cls.query.filter_by(phonedigits=phonedigits).first()
 
-    def find_by_measures(cls, phonedigits, friendphone):
+    def find_by_measures(cls, phonedigits):
        #return cls.query.filter_by(name=name).first()
-       return cls.query.filter_by(phonedigits=phonedigits, friendphone=friendphone).first()
+       y = phonedigits.split("-")
+
+       return cls.query.filter_by(phonedigits=y[0], friendphone=y[1]).first()
 
 
 
