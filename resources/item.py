@@ -31,11 +31,19 @@ class Item(Resource):
             item = ItemModel.find_by_measure(phonenumber)
             if item:
                 friendsObj['friends'].append(item.json())
+        # else:
+        #     x = phonenumber.split("+")
+        #     for y in range(0,len(x)):
+        #         friendsObj['friends'].append([item.json() for item in ItemModel.query.filter_by(phonenumber=x[y]).all()])
+
         else:
             x = phonenumber.split("+")
+            friendsObj['friends']
+            tempp = ""
             for y in range(0,len(x)):
-                friendsObj['friends'].append([item.json() for item in ItemModel.query.filter_by(phonenumber=x[y]).all()])
+                tempp.append([item.json() for item in ItemModel.query.filter_by(phonenumber=x[y]).all()])
 
+            friendsObj['friends'].append(tempp)
         return friendsObj
 
         #item = ItemModel.find_by_measure(phonenumber)
