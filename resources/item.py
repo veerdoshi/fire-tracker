@@ -23,7 +23,8 @@ class Item(Resource):
     #def get(self, name):
     def get(self, phonenumber):
 
-        friendsinformationstring = '{"friends":[]}'
+        #friendsinformationstring = '{"friends":[]}'
+        friendsinformationstring = '{"friends":}'
         friendsObj = json.loads(friendsinformationstring)
 
         if '+' not in phonenumber:
