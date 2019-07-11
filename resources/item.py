@@ -34,9 +34,9 @@ class Item(Resource):
         else:
             x = phonenumber.split("+")
             for y in range(0,len(x)):
-                friendsObj['friends'].append([item.json() for item in ItemModel.query.filter_by(phonenumber=x[y]).all()])
+                friendsObj['friends'].append(item.json() for item in ItemModel.query.filter_by(phonenumber=x[y]).all())
                 #friendsObj['friends'].append([item.json() for item in ItemModel.query.filter_by(latitude=x[y]).all()])
-        return {'friends': friendsObj['friends'][0]}
+        return friendsObj
 
         #item = ItemModel.find_by_measure(phonenumber)
         #if item:
