@@ -1,1 +1,1 @@
-# Synopsys Championship 2019 project, server for data
+Synopsys Championship 2019 project, server for data
